@@ -14,6 +14,7 @@ kotlin {
     jvm()
 
     js {
+        useEsModules()
         browser()
         binaries.executable()
     }
@@ -51,6 +52,9 @@ kotlin {
         }
         jsMain.dependencies {
             implementation(libs.ktor.client.cio.js)
+        }
+        webMain.dependencies {
+            implementation(libs.kotlinx.browser)
         }
     }
 }

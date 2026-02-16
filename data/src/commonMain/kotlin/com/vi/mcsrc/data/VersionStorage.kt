@@ -11,20 +11,4 @@ interface VersionStorage {
     fun getVersionDataById(versionId: String): Flow<MCVersion?>
 }
 
-@Single
-class InMemoryVersionStorage : VersionStorage {
-    private val storedDatas = MutableStateFlow(emptyList<MCVersion>())
-
-    override suspend fun saveVersions(version: List<MCVersion>) {
-        storedDatas.value = version
-    }
-
-    override fun getVersionDataById(versionId: String): Flow<MCVersion?> {
-        return storedDatas.map { objects ->
-            objects.find { it.id == versionId }
-        }
-    }
-
-    override fun getVersionDatas(): Flow<List<MCVersion>> = storedDatas
-
-}
+expect class PlatformVersionStorage

@@ -15,12 +15,13 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
+    jvm()
 
     js {
         useEsModules()
         browser()
+        binaries.executable()
     }
-    jvm()
 
     sourceSets {
         commonMain.dependencies {
@@ -31,6 +32,9 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.koin.core)
             api(libs.koin.annotations)
+        }
+        webMain.dependencies {
+            implementation(libs.kotlinx.browser)
         }
     }
 
